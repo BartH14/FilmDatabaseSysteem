@@ -10,20 +10,20 @@
 </head>
 <body>
     <header>
-        <nav style="background:rgba(255,255,255,0.8);" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container">
                 <div class="navigation-container">
                     @*nav bar*@
                     <nav>
-                        <div>
+                        <div class="actual-links">
                             <a asp-page="/Favorieten">Favorieten</a>
                             <a asp-page="/Index">Home</a>
                             <a asp-page="/Film">Aanbevelingen</a>
                         </div>
                     </nav>
                     @*search bar*@
-                    <div class="search-bar">
-                        <input type="search" placeholder="Zoek Films" class="search-inner"></input>
+                    <div class="search-bar" style="float:right;">
+                        <input type="search" placeholder="Zoek Films" class="search-inner"/>
                     </div>
                 </div>
             </div>

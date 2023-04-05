@@ -180,6 +180,7 @@ body {
     height: 100vh;
     flex-direction: column;
     overflow-y:scroll;
+    padding-bottom:5rem;
 }
 
 .movie-container {
