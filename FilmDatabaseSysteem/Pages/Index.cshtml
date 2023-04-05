@@ -2,9 +2,39 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-}
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+}
+<link rel="stylesheet" href="~/css/IndexStyle.css" />
+
+@*movie list*@
+<section class="movies-list">
+    @*foreach hier*@
+    <div class="movie-container">
+        <div class="picTitle-container">
+            <h1>Movie Title</h1>
+            <img src="/img/24movie-posters3-master1050-3559969809.jpeg" style="width:250px;height:90%;" />
+        </div>
+        <div class="right-side">
+            <div class="top-bar-movie">
+                <div class="movie-score">
+                    <div class="score-inner">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <div>Score: 2 / 5</div>
+                </div>
+                <i class="fa-solid fa-heart" style="padding:0 1rem 0 1rem;"></i>
+            </div>
+            <div class="text-container">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim lobortis scelerisque fermentum dui faucibus. Urna nunc id cursus metus aliquam. Sem fringilla ut morbi tincidunt augue interdum velit euismod in. Placerat duis ultricies lacus sed turpis tincidunt id aliquet risus.
+            </div>
+        </div>
+    </div>
+    @*end foreach*@
+
+</section>
+
+
