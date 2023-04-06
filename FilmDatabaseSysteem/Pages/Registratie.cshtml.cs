@@ -5,8 +5,11 @@ namespace FilmDatabaseSysteem.Pages
 {
     public class RegistratieModel : PageModel
     {
+        public string? CurrentPage { get; set; }
+
         public void OnGet()
         {
+            CurrentPage = "/registratie";
         }
     }
 }

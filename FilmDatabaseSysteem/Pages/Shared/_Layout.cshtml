@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Mvc.RazorPages;
+@{
+    var currentPage = (string)ViewData["CurrentPage"];
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,8 +13,13 @@
     <link rel="stylesheet" href="~/FilmDatabaseSysteem.styles.css" asp-append-version="true" />
 </head>
 <body>
+    @if (currentPage == "/login" || currentPage == "/registratie")
+    {
+       
+    }
+    else {
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-light border-bottom box-shadow mb-3">
             <div class="container">
                 <div class="navigation-container">
                     @*nav bar*@
@@ -22,16 +31,17 @@
                         </div>
                     </nav>
                     @*search bar*@
-                    <div class="search-bar" style="float:right;">
-                        <input type="search" placeholder="Zoek Films" class="search-inner"/>
+                    <div class="search-bar">
+                        <input type="text" @* asp-for="SearchString"*@ class="align-middle" placeholder="Zoek Films" class="search-inner" />
                     </div>
                 </div>
             </div>
         </nav>
     </header>
-    <div>
+    }
+    @*<div>*@
         @RenderBody()
-    </div>
+    @*</div>*@
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

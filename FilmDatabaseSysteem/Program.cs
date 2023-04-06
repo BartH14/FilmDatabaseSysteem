@@ -1,7 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using FilmDatabaseSysteem.Data;
+using FilmDatabaseSysteem.Models;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<FilmDbContext>(opt => opt.UseSqlite("Data Source=FilmDatabaseSysteem.Data.db"));
 
 var app = builder.Build();
 
@@ -13,13 +20,23 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<FilmDbContext>();
+    context.Database.EnsureCreated();
+    //SeedData.Initialize(context);
+}
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
-
 app.MapRazorPages();
 
 app.Run();
+
+
