@@ -1,5 +1,15 @@
 ﻿@page
-@model FilmDatabaseSysteem.Pages.FavorietenModel
+@model FavorietenModel
 @{
     ViewData["Title"] = "Favorieten";
+}
+
+<h1>Favorite Movies</h1>
+
+<h1>@ViewData["Title"]</h1>
+
+@foreach (var movie in Model.Movies)
+{
+    <h2>@movie.Title</h2>
+    <p>@movie.Overview</p>
 }
