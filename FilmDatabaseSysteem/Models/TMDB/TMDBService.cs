@@ -1,7 +1,4 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
-
-namespace FilmDatabaseSysteem.Models;
+﻿namespace FilmDatabaseSysteem.Models;
 
 public class TMDBService
 {
@@ -18,6 +15,24 @@ public class TMDBService
     public async Task<dynamic> GetMovieDetails(int movieId)
     {
         var response = await _httpClient.GetStringAsync($"movie/{movieId}?api_key={ApiKey}");
+        return response;
+    }
+
+    public async Task<dynamic> GetSimilarMovie(int movieId)
+    {
+        var response = await _httpClient.GetStringAsync($"/movie/{movieId}/similar?api_key={ApiKey}");
+        return response;
+    }
+
+    public async Task<dynamic> GerRecommendedMovie(int movieId)
+    {
+        var response = await _httpClient.GetStringAsync($"/movie/{movieId}/recommendations?api_key={ApiKey}");
+        return response;
+    }
+
+    public async Task<dynamic> GetTrendingMovies()
+    {
+        var response = await _httpClient.GetStringAsync($"/trending/movie/week?api_key={ApiKey}");
         return response;
     }
 }
