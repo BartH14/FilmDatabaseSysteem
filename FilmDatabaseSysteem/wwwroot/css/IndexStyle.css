@@ -240,6 +240,6 @@ img {
     overflow: hidden; /* don't show excess chars */
     /*white-space: nowrap;*/
     width: 100%;
-    height: 100%;
+    height: fit-content;
     -webkit-line-clamp: 5;
 }

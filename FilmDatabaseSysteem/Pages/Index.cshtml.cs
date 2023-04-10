@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FilmDatabaseSysteem.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 
 namespace FilmDatabaseSysteem.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        public List<Movie> Movies { get; set; }
         public string? SearchString { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger)
@@ -13,9 +16,22 @@ namespace FilmDatabaseSysteem.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+
+        public IActionResult OnGet()
         {
-            // onGet limit van 10 films met api call
+            TMDBService service = new TMDBService();
+
+            List<int> trendingMovieIds = service.GetTrendingMovies().Result;
+            Movies = new List<Movie>();
+
+            foreach (var movieId in trendingMovieIds)
+            {
+                var item = service.GetMovieDetails(movieId).Result;
+                Movie movie = JsonConvert.DeserializeObject<Movie>(item);
+                Movies.Add(movie);
+            }
+
+            return Page();
         }
 
         public async Task OnPostAsync()
