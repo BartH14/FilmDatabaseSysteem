@@ -1,6 +1,6 @@
-﻿@page
+﻿@page "/film";
 @using FilmDatabaseSysteem.Models
-@model FilmDatabaseSysteem.Pages.FilmModel
+@model FilmModel
 @{
     ViewData["Title"] = "Films";
     ViewData["pageURL"] = "/film";
@@ -8,33 +8,42 @@
 
 <link rel="stylesheet" href="~/css/IndexStyle.css" />
 
-@*movie list*@
 <section class="movies-list">
-    @*foreach hier*@
-    <div class="movie-container">
-        <div class="picTitle-container">
-            <h1>Movie Title</h1>
-            <img src="/img/24movie-posters3-master1050-3559969809.jpeg" style="width:250px;height:90%;" />
-        </div>
-        <div class="right-side">
-            <div class="top-bar-movie">
-                <div class="movie-score">
-                    <div class="score-inner">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
+    @foreach (var movie in Model.Movies)
+    {
+        <div class="movie-container">
+            <div class="picTitle-container">
+                <h1>@movie.Title</h1>
+                <img src="https://image.tmdb.org/t/p/original/@movie.PosterPath" style="width:250px;height:90%;" />
+            </div>
+            <div class="right-side">
+                <div class="top-bar-movie">
+                    <div class="movie-score">
+                        <div class="score-inner">
+                            @{
+                                int rating = (int)Math.Round(movie.VoteAverage);
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    if (i < Math.Round(movie.VoteAverage / 2.0))
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        rating--;
+                                    }
+                                    else
+                                    {
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                }
+                            }
+                        </div>
+                        <div>Score: @Math.Round((decimal)movie.VoteAverage, 1) </div>
                     </div>
-                    <div>Score: 2 / 5</div>
+                    <i class="fa-solid fa-heart" style="padding:0 1rem 0 1rem;"></i>
                 </div>
-                <i class="fa-solid fa-heart" style="padding:0 1rem 0 1rem;"></i>
-            </div>
-            <div class="text-container">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim lobortis scelerisque fermentum dui faucibus. Urna nunc id cursus metus aliquam. Sem fringilla ut morbi tincidunt augue interdum velit euismod in. Placerat duis ultricies lacus sed turpis tincidunt id aliquet risus.
+                <div class="text-container">
+                    @movie.Overview
+                </div>
             </div>
         </div>
-    </div>
-    @*end foreach*@
-
+    }
 </section>
