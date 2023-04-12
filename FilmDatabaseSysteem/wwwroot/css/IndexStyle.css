@@ -197,19 +197,24 @@ body {
 
 .top-bar-movie {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
-.picTitle-container {
+.left-side {
     flex-direction: column;
     text-align: center;
     margin-right: 1rem;
     width: 40%;
 }
 
+.movie-title {
+    /*font-size: 10vw !important;*/
+}
+
 img {
-    width: 5rem;
     height: 100%;
+    width: 100%;
+    object-fit: cover;
     border-radius: 15px;
     filter: grayscale();
     transition-duration: 0.4s;
@@ -217,7 +222,6 @@ img {
 
     img:hover {
         filter: grayscale(0);
-        content: "hoi";
         transition-duration: 0.4s;
     }
 
