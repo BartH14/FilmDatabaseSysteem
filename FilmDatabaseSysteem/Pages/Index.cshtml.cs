@@ -24,12 +24,12 @@ namespace FilmDatabaseSysteem.Pages
             var trendingMovieIds = service.GetTrendingMovies().Result;
             Movies = new List<Movie>();
 
-            foreach (var movieId in trendingMovieIds)
-            {
-                var item = service.GetMovieDetails(movieId).Result;
-                Movie movie = JsonConvert.DeserializeObject<Movie>(item);
-                Movies.Add(movie);
-            }
+            //foreach (var movieId in trendingMovieIds)
+            //{
+            //    var item = service.GetMovieDetails(movieId).Result;
+            //    Movie movie = JsonConvert.DeserializeObject<Movie>(item);
+            //    Movies.Add(movie);
+            //}
 
             return Page();
         }
