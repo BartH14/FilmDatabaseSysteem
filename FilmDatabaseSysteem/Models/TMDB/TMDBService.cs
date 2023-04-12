@@ -32,7 +32,8 @@ public class TMDBService
 
     public async Task<dynamic> GetTrendingMovies()
     {
-        var response = await _httpClient.GetStringAsync($"trending/movie/week?api_key={ApiKey}");
+        var testurl = _httpClient.BaseAddress + $"trending/movie/week?api_key={ApiKey}";
+        var response = await _httpClient.GetStringAsync($"/trending/all/week?api_key={ApiKey}");
         return response;
     }
 }

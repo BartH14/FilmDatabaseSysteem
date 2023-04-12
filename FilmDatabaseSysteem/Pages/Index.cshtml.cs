@@ -21,7 +21,7 @@ namespace FilmDatabaseSysteem.Pages
         {
             TMDBService service = new TMDBService();
 
-            List<int> trendingMovieIds = service.GetTrendingMovies().Result;
+            var trendingMovieIds = service.GetTrendingMovies().Result;
             Movies = new List<Movie>();
 
             foreach (var movieId in trendingMovieIds)
