@@ -24,7 +24,7 @@ public class TMDBService
         return response;
     }
 
-    public async Task<dynamic> GerRecommendedMovie(int movieId)
+    public async Task<dynamic> GetRecommendedMovie(int movieId)
     {
         var response = await _httpClient.GetStringAsync($"/movie/{movieId}/recommendations?api_key={ApiKey}");
         return response;

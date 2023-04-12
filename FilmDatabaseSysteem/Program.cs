@@ -3,14 +3,15 @@ using FilmDatabaseSysteem.Data;
 using FilmDatabaseSysteem.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<FilmDbContext>(opt => opt.UseSqlite("Data Source=FilmDatabaseSysteem.Data.db"));
-
-var app = builder.Build();
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<FilmDbContext>(); var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
