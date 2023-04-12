@@ -16,13 +16,14 @@ namespace FilmDatabaseSysteem.Pages
 
             movies = new Movie();
             Movies = new List<Movie>();
+            int movieId = 38;
 
-            //foreach (var movieId in movies.MovieIds)
-            //{
-                var item = service.GetMovieDetails(550).Result;
+            if (movieId != null)
+            {
+                var item = service.GetMovieDetails(movieId).Result;
                 Movie movie = JsonConvert.DeserializeObject<Movie>(item);
-             //   Movies.Add(movie);
-            //}
+                Movies.Add(movie);
+            }
 
             return Page();
         }
