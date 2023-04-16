@@ -2,13 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace FilmDatabaseSysteem.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+
         public List<Movie> Movies { get; set; }
+
+        [BindProperty(SupportsGet = true)]
         public string? SearchString { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger)
@@ -17,30 +21,33 @@ namespace FilmDatabaseSysteem.Pages
         }
 
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
             TMDBService service = new TMDBService();
+            var trendingMovies = await service.GetTrendingMovies();
+            ViewData["TrendingMovies"] = trendingMovies;
 
-            var trendingMovieIds = service.GetTrendingMovies().Result;
-            Movies = new List<Movie>();
-
-            //foreach (var movieId in trendingMovieIds)
-            //{
-            //    var item = service.GetMovieDetails(movieId).Result;
-            //    Movie movie = JsonConvert.DeserializeObject<Movie>(item);
-            //    Movies.Add(movie);
-            //}
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                var movies = (List<Movie>)ViewData["TrendingMovies"];
+                movies = movies.Where(m => m.Title.Contains(SearchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                ViewData["TrendingMovies"] = movies;
+            }
 
             return Page();
         }
 
-        public async Task OnPostAsync()
-        {
-            var SearchString = Request.Form["SearchString"];
-            // hier moet de api call nog komen als we weten hoe die eruit ziet
+        //public IActionResult OnGetSearch(string query)
+        //{
+        //    var movies = (List<Movie>)ViewData["TrendingMovies"];
 
-            //Film = await db.Film.Where(s => s.Titel.Contains(SearchString)).ToListAsync();
-        }
+        //    if (!string.IsNullOrEmpty(query))
+        //    {
+        //        movies = movies.Where(m => m.Title.Contains(query, StringComparison.OrdinalIgnoreCase)).ToList();
+        //    }
 
+        //    ViewData["TrendingMovies"] = movies;
+        //    return Page();
+        //}
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace FilmDatabaseSysteem.Models;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+namespace FilmDatabaseSysteem.Models;
 
 public class TMDBService
 {
@@ -32,7 +35,9 @@ public class TMDBService
 
     public async Task<dynamic> GetTrendingMovies()
     {
-        var response = await _httpClient.GetStringAsync($"/trending/movie/week?api_key={ApiKey}");
-        return response;
+        var response = await _httpClient.GetStringAsync($"trending/movie/week?api_key={ApiKey}");
+        var json = JObject.Parse(response);
+        var movies = JsonConvert.DeserializeObject<List<Movie>>(json["results"].ToString());
+        return movies;
     }
 }

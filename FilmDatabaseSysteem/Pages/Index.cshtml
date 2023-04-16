@@ -9,13 +9,20 @@
 }
 <link rel="stylesheet" href="~/css/IndexStyle.css" />
 
+<form method="get" style="margin:auto;">
+    <div class="form-group">
+        <input type="text" asp-for="SearchString" class="align-middle" style="width:200px" />
+        <input type="submit" value="Zoek" class="btn btn-primary" />
+        <span asp-validation-for="SearchString" style="color:red; font-weight:900"></span>
+    </div>
+</form>
 <section class="movies-list">
-    @foreach (var movie in Model.Movies)
+    @foreach (var movie in (List<Movie>)ViewData["TrendingMovies"])
     {
         <div class="movie-container">
             <div class="left-side">
 
-                <a asp-page="Film">
+                <a asp-route-id="">
                     <img src="https://image.tmdb.org/t/p/original/@movie.PosterPath" />
                 </a>
             </div>
