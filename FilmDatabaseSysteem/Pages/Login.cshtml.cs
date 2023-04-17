@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace FilmDatabaseSysteem.Pages
 {
+   
     public class LoginModel : PageModel
     {
         private readonly FilmDbContext _dbContext;
@@ -32,7 +33,7 @@ namespace FilmDatabaseSysteem.Pages
         {
             CurrentPage = "/";
         }
-
+        [Authorize]
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)

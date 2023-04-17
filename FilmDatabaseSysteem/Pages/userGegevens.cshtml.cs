@@ -1,33 +1,42 @@
 using FilmDatabaseSysteem.Data;
-using FilmDatabaseSysteem.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace FilmDatabaseSysteem.Pages
 {
-    public class RegistratieModel : PageModel
+    //[Authorize]
+    public class userGegevensModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        public string? CurrentPage { get; set; }
-
-        //opzetten van DB connectie
         private readonly FilmDbContext _dbContext;
 
-        public RegistratieModel(FilmDbContext dbContext, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public userGegevensModel(FilmDbContext dbContext, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _dbContext = dbContext;
             _userManager = userManager;
             _signInManager = signInManager;
         }
 
-        public void OnGet()
+       
+        public async Task<IActionResult> OnGetAsync()
         {
-            CurrentPage = "/registratie";
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                return RedirectToPage("/registratie", new { area = "Identity" });
+            }
+
+            var userEmail = user.Email;
+
+            // Do something with the userEmail
+            ViewData["UserEmail"] = userEmail;
+
+            return Page();
         }
 
         [BindProperty]
@@ -47,7 +56,7 @@ namespace FilmDatabaseSysteem.Pages
             public string? Password { get; set; }
 
         }
-        [Authorize]
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)

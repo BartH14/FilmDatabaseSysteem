@@ -189,12 +189,12 @@ body {
 }
 
 .movie-container {
-    width: 50%;
+    width: 90%;
     min-width: 650px;
     margin: 0 auto;
     background: linear-gradient(141.93deg, rgba(255, 255, 255, 0.8) 2.85%, rgba(255, 255, 255, 0.6) 73.61%);
     display: flex;
-    padding: 2rem 1rem 2rem 1rem;
+    padding: 0 1rem 0 0;
     height: 450px;
     border-radius: 15px;
     margin-bottom: 1.5rem;
@@ -220,7 +220,7 @@ img {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border-radius: 15px;
+    border-radius: 15px 0 0 15px;
     filter: grayscale();
     transition-duration: 0.4s;
 }
