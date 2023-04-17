@@ -33,21 +33,7 @@ namespace FilmDatabaseSysteem.Pages
                 movies = movies.Where(m => m.Title.Contains(SearchString, StringComparison.OrdinalIgnoreCase)).ToList();
                 ViewData["TrendingMovies"] = movies;
             }
-
             return Page();
         }
-
-        //public IActionResult OnGetSearch(string query)
-        //{
-        //    var movies = (List<Movie>)ViewData["TrendingMovies"];
-
-        //    if (!string.IsNullOrEmpty(query))
-        //    {
-        //        movies = movies.Where(m => m.Title.Contains(query, StringComparison.OrdinalIgnoreCase)).ToList();
-        //    }
-
-        //    ViewData["TrendingMovies"] = movies;
-        //    return Page();
-        //}
     }
 }

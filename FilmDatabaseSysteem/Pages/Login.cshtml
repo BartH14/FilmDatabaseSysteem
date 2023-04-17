@@ -6,16 +6,16 @@
     ViewData["CurrentPage"] = Model.CurrentPage;
     Layout = "_LayoutAuth";
 }
-}
 
-<body style="background:#1f1f1f !important;height:100vh;margin:auto;padding:0;">
+
+<body style="background-image:url('../img/intro_bg.jpg');background-position:center;background-size:cover;height:100vh;margin:auto;padding:0;">
     <section class="login-container my-auto align-items-center" style="display:flex;height:100vh;">
         <form method="post" style="margin:auto;padding:1rem 2rem 1rem 2rem;border-radius:15px;height:fit-content; background: linear-gradient(141.93deg, rgba(255, 255, 255, 0.8) 2.85%, rgba(255, 255, 255, 0.6) 73.61%);">
+            <h4>Log in met je account</h4>
             <div class="form-group">
                 <input type="hidden" id="role" value="false" />
                 <label for="Email">Email address</label>
                 <input type="email" class="form-control" name="Email" id="email" aria-describedby="emailHelp" placeholder="Vul Email in">
-                <small id="emailHelp" class="form-text text-muted">Wij delen uw Email adres nooit met derden</small>
             </div>
             <div class="form-group">
                 <label for="Password">Password</label>
