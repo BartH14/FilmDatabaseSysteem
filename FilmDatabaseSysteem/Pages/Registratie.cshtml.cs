@@ -14,6 +14,8 @@ namespace FilmDatabaseSysteem.Pages
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         public string? CurrentPage { get; set; }
+        [BindProperty]
+        public InputModel Input { get; set; }
 
         //opzetten van DB connectie
         private readonly FilmDbContext _dbContext;
@@ -30,8 +32,7 @@ namespace FilmDatabaseSysteem.Pages
             CurrentPage = "/registratie";
         }
 
-        [BindProperty]
-        public InputModel Input { get; set; }
+        
 
         public class InputModel
         {
@@ -47,7 +48,7 @@ namespace FilmDatabaseSysteem.Pages
             public string? Password { get; set; }
 
         }
-        [Authorize]
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
@@ -56,6 +57,7 @@ namespace FilmDatabaseSysteem.Pages
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                    //nieuwe gebruiker inloggen
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToPage("/Index");
                 }
@@ -64,7 +66,6 @@ namespace FilmDatabaseSysteem.Pages
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
             return Page();
         }
     }

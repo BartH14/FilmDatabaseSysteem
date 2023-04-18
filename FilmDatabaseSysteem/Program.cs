@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,19 +27,36 @@ builder.Services.AddAuthentication(options =>
     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 })
-    .AddCookie(options =>
-{
-    options.LoginPath = "/Login";
-});
+   .AddCookie(options =>
+   {
+       options.Cookie.HttpOnly = true;
+       options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+       options.SlidingExpiration = true;
+       options.ClaimsIssuer = "FilmDatabaseZuyd";
+       options.Events = new CookieAuthenticationEvents
+       {
+           OnValidatePrincipal = async context =>
+           {
+               // Add the NameIdentifier claim to the user's identity
+               var identity = (ClaimsIdentity)context.Principal.Identity;
+               var userId = context.Principal.FindFirstValue(ClaimTypes.NameIdentifier);
+               if (userId != null)
+               {
+                   identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userId));
+               }
+               await Task.CompletedTask;
+           }
+       };
+   });
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
-    options.Password.RequireDigit = false;
-    options.Password.RequireLowercase = false;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireUppercase = false;
-    options.Password.RequiredLength = 1;
-    options.Password.RequiredUniqueChars = 1;
+ options.Password.RequireDigit = false;
+ options.Password.RequireLowercase = false;
+ options.Password.RequireNonAlphanumeric = false;
+ options.Password.RequireUppercase = false;
+ options.Password.RequiredLength = 1;
+ options.Password.RequiredUniqueChars = 1;
 });
 
 var app = builder.Build();
