@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace FilmDatabaseSysteem.Pages
 {
-    [Authorize]
+    //[Authorize]
     public class FavorietenModel : PageModel
     {
         public Favorieten favorieten { get; set; }
