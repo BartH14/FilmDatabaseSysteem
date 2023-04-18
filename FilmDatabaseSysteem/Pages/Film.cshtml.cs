@@ -11,7 +11,7 @@ namespace FilmDatabaseSysteem.Pages
     {
         public Movie movie { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int movieId)
+        public async Task<IActionResult> OnGetMovieDetailsAsync(int movieId)
         {
             TMDBService service = new TMDBService();
 

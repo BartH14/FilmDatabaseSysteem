@@ -5,35 +5,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - FilmDatabaseSysteem</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/FilmDatabaseSysteem.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/FilmDatabaseSysteem.styles.css" asp-append-version="true"/>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-light border-bottom box-shadow mb-3" style="height:calc(5rem);">
-            <h1>@ViewData["UserName"]</h1>
-            @*nav bar*@
-            <div class="actual-links">
-                <a asp-page="/Favorieten">Favorieten</a>
-                <a asp-page="/Index">Home</a>
-                <a asp-page="/Film">Aanbevelingen</a>
-                @*<a asp-page="/userGegevens">Profiel</a>*@
-            </div>
-        </nav>
-    </header>
-    @*<div>*@
-    @RenderBody()
-    @*</div>*@
+<header>
+    <nav class="navbar navbar-light border-bottom box-shadow mb-3" style="height:calc(5rem);">
+        <h1>@ViewData["UserName"]</h1>
+        @*nav bar*@
+        <div class="actual-links">
+            <a asp-page="/Favorieten">Favorieten</a>
+            <a asp-page="/Index">Home</a>
+            <a asp-page="/Random">50/50</a>
+            @*<a asp-page="/userGegevens">Profiel</a>*@
+        </div>
+    </nav>
+</header>
+@*<div>*@
+@RenderBody()
+@*</div>*@
 
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://kit.fontawesome.com/9b099ecec7.js" crossorigin="anonymous"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="https://kit.fontawesome.com/9b099ecec7.js" crossorigin="anonymous"></script>
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
