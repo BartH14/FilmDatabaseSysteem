@@ -6,26 +6,17 @@ using Newtonsoft.Json;
 
 namespace FilmDatabaseSysteem.Pages
 {
-    [Authorize]
+    //[Authorize]
     public class FilmModel : PageModel
     {
-        public Movie movies { get; set; }
-        public List<Movie> Movies { get; set; }
+        public Movie movie { get; set; }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync(int movieId)
         {
             TMDBService service = new TMDBService();
 
-            movies = new Movie();
-            Movies = new List<Movie>();
-            int movieId = 38;
-
-            if (movieId != null)
-            {
-                var item = service.GetMovieDetails(movieId).Result;
-                Movie movie = JsonConvert.DeserializeObject<Movie>(item);
-                Movies.Add(movie);
-            }
+            var response = service.GetMovieDetails(movieId).Result;
+            movie = JsonConvert.DeserializeObject<Movie>(response);
 
             return Page();
         }

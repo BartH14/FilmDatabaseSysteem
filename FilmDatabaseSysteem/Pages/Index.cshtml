@@ -4,12 +4,12 @@
 @{
     ViewData["Title"] = "Home";
 }
-<link rel="stylesheet" href="~/css/IndexStyle.css" />
+<link rel="stylesheet" href="~/css/IndexStyle.css"/>
 
 <form method="get" style="margin:auto;">
     <div class="form-group">
-        <input type="text" asp-for="SearchString" class="align-middle" style="width:200px" />
-        <input type="submit" value="Zoek" class="btn btn-primary" />
+        <input type="text" asp-for="SearchString" class="align-middle" style="width:200px"/>
+        <input type="submit" value="Zoek" class="btn btn-primary"/>
         <span asp-validation-for="SearchString" style="color:red; font-weight:900"></span>
     </div>
 </form>
@@ -19,8 +19,8 @@
         <div class="movie-container">
             <div class="left-side">
 
-                <a asp-page="Film" asp-route-id="@movie.Id">
-                    <img src="https://image.tmdb.org/t/p/original/@movie.PosterPath" />
+                <a asp-page="Film" asp-page-handler="MovieDetails" asp-route-movieId="@movie.Id">
+                    <img src="https://image.tmdb.org/t/p/original/@movie.PosterPath"/>
                 </a>
             </div>
             <div class="right-side">
