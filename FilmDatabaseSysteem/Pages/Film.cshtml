@@ -37,14 +37,17 @@
                         </div>
                         <div>Score: @Math.Round((decimal)@Model.movie.VoteAverage, 1) </div>
                     </div>
-
-
                     <div class="like-heart">
                         <i class="fa-solid fa-heart" style="padding:0 1rem 0 1rem;"></i>
                     </div>
+
+                    @*alvast voor als we favs hebben*@
+                  @*  <div class="like-heart">
+                        <i class="fa-solid fa-heart" style="padding:0 1rem 0 1rem; color:@(liked ? "red" : "grey")"></i>
+                    </div>*@
                 </div>
             </div>
-            <div class="text-container genres" style="display:flex;flex-direction:row;">
+            <div class="genres" style="display:flex;flex-direction:row;">
                 @foreach (var genre in @Model.movie.Genres)
                 {
                     <div class="genres-inner">@genre.Name</div>

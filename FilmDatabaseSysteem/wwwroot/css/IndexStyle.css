@@ -272,10 +272,22 @@ img {
     width: 100%;
     height: fit-content;
     -webkit-line-clamp: 5;
+    margin-bottom:1rem;
 }
+
+    .text-container:hover {
+        background-color: #fff8;
+        transition:ease-in-out 0.5s;
+    }
+
+
 
 /* styling voor de genres op de film pagina */
 .genres {
+    padding: 1rem;
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 1rem;
 }
 
 .genres-inner {
