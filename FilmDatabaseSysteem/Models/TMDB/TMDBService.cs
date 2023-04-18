@@ -15,7 +15,7 @@ public class TMDBService
         this._httpClient.BaseAddress = new Uri("https://api.themoviedb.org/3/");
     }
 
-    public async Task<dynamic> GetMovieDetails(int movieId)
+    public async Task<string> GetMovieDetails(int movieId)
     {
         var response = await _httpClient.GetStringAsync($"movie/{movieId}?api_key={ApiKey}");
         return response;
