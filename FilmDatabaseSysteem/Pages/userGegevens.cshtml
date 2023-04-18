@@ -11,23 +11,22 @@
 <body style="background-image:url('../img/intro_bg.jpg');background-position:center;background-size:cover;height:100vh;margin:auto;padding:0;">
     <section class="login-container my-auto align-items-center" style="display:flex;height:100vh;">
         <form method="post" style="margin:auto;padding:1rem 2rem 1rem 2rem;border-radius:15px;height:fit-content; background: linear-gradient(141.93deg, rgba(255, 255, 255, 0.8) 2.85%, rgba(255, 255, 255, 0.6) 73.61%);">
-            <h4>Pas je email of wachtwoord aan</h4>
-            <h2>User Email: @ViewData["UserEmail"]</h2>
+            <h4>Hey, @UserManager.GetUserName(User)!</h4>
 
+            <h4>Pas je email of wachtwoord aan</h4>
             <small>Wil je alleen een veld veranderen, laat dan de oude gegevens staan</small>
             <div asp-validation-summary="All" class="text-danger"></div>
-            <h3>Welcome, @UserManager.GetUserName(User)</h3>
             <div class="form-group">
                 <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" value="@UserManager.GetEmailAsync(await UserManager.GetUserAsync(User))" class="form-control" />
+                <input asp-for="Input.Email" value="@ViewData["UserEmail"]" class="form-control" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" value="oud wachtwoord"class="form-control" />
-                <span asp-validation-for="Input.Password"class="text-danger"></span>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
-            <br/>
+            <br />
             <button type="submit" class="btn btn-primary">Opslaan</button>
             <br />
             <a asp-page="/Index">Home</a>
