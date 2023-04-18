@@ -16,7 +16,8 @@ namespace FilmDatabaseSysteem.Pages
         {
             TMDBService service = new TMDBService();
 
-            favorieten = new Favorieten(1, new List<int>() { 85936, 1091671, 603 });
+            favorieten = new Favorieten(1,
+                new List<int>() { 1052295, 1066662, 1036174, 555790, 847947, 478256, 13576, 12602 });
             Movies = new List<Movie>();
 
             foreach (var movieId in favorieten.MovieIds)
