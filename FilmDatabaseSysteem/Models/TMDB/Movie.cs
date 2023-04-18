@@ -21,7 +21,7 @@ public class Movie
     [JsonProperty("production_companies")] public List<ProductionCompany> ProductionCompanies { get; set; }
     [JsonProperty("production_countries")] public List<ProductionCountry> ProductionCountries { get; set; }
     [JsonProperty("release_date")] public string ReleaseDate { get; set; }
-    [JsonProperty("revenue")] public int Revenue { get; set; }
+    [JsonProperty("revenue")] public Int64 Revenue { get; set; }
     [JsonProperty("runtime")] public int Runtime { get; set; }
     [JsonProperty("spoken_languages")] public List<SpokenLanguage> SpokenLanguages { get; set; }
     [JsonProperty("status")] public string Status { get; set; }

@@ -3,6 +3,20 @@
     margin: 0;
 }
 
+:root {
+    --color1: 255, 0, 0; /* red */
+    --color2: 0, 255, 0; /* green */
+    --color3: 0, 0, 255; /* blue */
+    --color4: 255, 255, 0; /* yellow */
+    --color5: 255, 165, 0; /* orange */
+    --color6: 128, 0, 128; /* purple */
+    --color7: 0, 128, 128; /* teal */
+    --color8: 139, 69, 19; /* brown */
+    --color9: 255, 192, 203; /* pink */
+    --color10: 0, 0, 0; /* black */
+}
+
+
 body {
     scroll-behavior: smooth;
     width: 100vw;
@@ -175,8 +189,8 @@ body {
 }
 
 .navbar {
-    display:flex;
-    justify-content:center;
+    display: flex;
+    justify-content: center;
 }
 
 .movies-list {
@@ -189,7 +203,7 @@ body {
 }
 
 .movie-container {
-    width: 90%;
+    width: 95%;
     min-width: 650px;
     margin: 0 auto;
     background: linear-gradient(141.93deg, rgba(255, 255, 255, 0.8) 2.85%, rgba(255, 255, 255, 0.6) 73.61%);
@@ -230,9 +244,16 @@ img {
         transition-duration: 0.4s;
     }
 
-.movie-score {
-    /*display: flex;
-    flex-direction: column;*/
+.movie-info {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+.like-heart {
+    color:red;
+}
+.unlike-heart {
+    color:grey;
 }
 
 .right-side {
@@ -252,3 +273,26 @@ img {
     height: fit-content;
     -webkit-line-clamp: 5;
 }
+
+/* styling voor de genres op de film pagina */
+.genres {
+}
+
+.genres-inner {
+    padding: 0.4rem;
+    margin-right: 1rem;
+    border-radius: 15px;
+    color:white;
+    mix-blend-mode:difference;
+    border: 3px solid white;
+    background-color: rgb(var(--color8));
+    transition: background-color 0.5s ease;
+}
+
+    .genres-inner:hover {
+        --random-color: calc(1 + var(--colorCount) * random());
+        background-color: rgb(var(--color-random-color));
+        padding: 0.4rem;
+        margin-right: 1rem;
+        border-radius: 15px;
+    }
