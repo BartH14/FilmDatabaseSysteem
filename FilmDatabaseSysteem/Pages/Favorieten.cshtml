@@ -3,15 +3,14 @@
 @{
     ViewData["Title"] = "Favorieten";
 }
-<link rel="stylesheet" href="~/css/IndexStyle.css" />
+<link rel="stylesheet" href="~/css/IndexStyle.css"/>
 
 <section class="movies-list">
     @foreach (var movie in Model.Movies)
     {
         <div class="movie-container">
             <div class="left-side">
-
-                <a asp-page="Film">
+                <a asp-page="Film" asp-page-handler="MovieDetails" asp-route-movieId="@movie.Id">
                     <img src="https://image.tmdb.org/t/p/original/@movie.PosterPath"/>
                 </a>
             </div>

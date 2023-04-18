@@ -2,7 +2,7 @@
 {
     public class Film
     {
-        public List<int> MovieIds { get; set; }
+        public List<int> MovieIds { get; }
 
         public Film(List<int> movieIds)
         {
